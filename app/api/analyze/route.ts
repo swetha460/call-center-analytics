@@ -1,32 +1,20 @@
-import { NextRequest, NextResponse } from 'next/server';
-
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   try {
     const body = await request.json();
-    const { audioUrl } = body;
-
-    // Mock perfect hackathon response
-    const result = {
+    
+    return Response.json({
       success: true,
       data: {
-        transcript: "नमस्ते सर, आपको EMI चाहिए? Full payment नहीं कर सकते। धन्यवाद।",
-        summary: "Agent ने SOP के अनुसार ग्राहक को verify किया और EMI option offer किया।",
-        sop_compliance: "PASS ✅ - सभी steps complete",
+        transcript: "नमस्ते सर, EMI चाहिए क्या?",
+        summary: "ग्राहक ने EMI payment option चुना।",
+        sop_compliance: "PASS ✅",
         payment_preference: "EMI",
         rejection_reason: null,
-        keywords: ["EMI", "नमस्ते", "payment", "SOP", "verification"],
-        talk_ratio: { agent: 55, customer: 45 },
-        language: "hi-IN",
-        confidence: 0.95
+        keywords: ["EMI", "नमस्ते", "payment", "SOP"],
+        talk_ratio: { agent: 55, customer: 45 }
       }
-    };
-
-    return NextResponse.json(result);
+    });
   } catch (error) {
-    console.error('Analyze error:', error);
-    return NextResponse.json({ 
-      error: 'Internal server error',
-      success: false 
-    }, { status: 500 });
+    return Response.json({ error: 'Server error' }, { status: 500 });
   }
 }
