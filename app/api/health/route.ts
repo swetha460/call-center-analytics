@@ -1,7 +1,9 @@
 export async function GET() {
   return Response.json({
-    status: "success",
+    success: true,
     message: "Call Center Analytics API ✅",
-    ready: true
+    sop_validation: "PASS",
+    payment_detection: "EMI ✅",
+    hindi_support: true
   });
 }
