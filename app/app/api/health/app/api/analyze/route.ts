@@ -2,14 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { audioUrl } = await request.json();
+    const body = await request.json();
+    const { audioUrl } = body;
 
     return NextResponse.json({
       success: true,
       data: {
-        transcript: "Namaste sir, aapko EMI chahiye? Full payment nahi kar sakte.",
-        summary: "Agent greeted customer properly and offered EMI payment options.",
-        sop_compliance: "PASS ✅ - All SOP steps followed",
+        transcript: "Namaste sir, EMI chahiye kya?",
+        summary: "Customer requested EMI payment option after proper greeting.",
+        sop_compliance: "PASS ✅",
         payment_preference: "EMI",
         rejection_reason: null,
         keywords: ["EMI", "namaste", "payment", "SOP", "verification"],
